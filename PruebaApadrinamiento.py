@@ -14,7 +14,7 @@ TEST_NAME = "PruebaApadrinamiento"
 # ===== Crear carpetas =====
 # ===== Crear carpetas =====
 BASE_DIR = "Capturas"
-TEST_NAME = "PruebaRegistro"
+TEST_NAME = "PruebaApadrinamiento"
 TEST_DIR = os.path.join(BASE_DIR, TEST_NAME)
 
 # Verificar carpeta principal
@@ -116,14 +116,67 @@ time.sleep(2)
 
 # ===== Llenar apadrinamiento =====
 try:
+
+    #Campo Nombre
     campo_nombre = wait.until(
-        EC.presence_of_element_located((By.NAME, "email"))
+        EC.presence_of_element_located((By.NAME, "nombre"))
+    )
+    campo_nombre.clear()
+    campo_nombre.send_keys(NOMBRE)
+
+    #Campo EMAIL
+
+    campo_nombre = wait.until(
+        EC.presence_of_element_located((By.NAME, "correo"))
     )
     campo_nombre.clear()
     campo_nombre.send_keys(EMAIL)
+
+    #Campo cedula
+
+    campo_nombre = wait.until(
+        EC.presence_of_element_located((By.NAME, "cedula"))
+    )
+    campo_nombre.clear()
+    campo_nombre.send_keys(CEDULA)
+
+    #Campo telefono
+    
+    campo_nombre = wait.until(
+        EC.presence_of_element_located((By.NAME, "telefono"))
+    )
+    campo_nombre.clear()
+    campo_nombre.send_keys(TELEFONO)
+
+    #Campo direccion
+
+    campo_nombre = wait.until(
+        EC.presence_of_element_located((By.NAME, "direccion"))
+    )
+    campo_nombre.clear()
+    campo_nombre.send_keys(DIRRECION)
+
+    #Campo monto
+
+    campo_nombre = wait.until(
+        EC.presence_of_element_located((By.NAME, "monto"))
+    )
+    campo_nombre.clear()
+    campo_nombre.send_keys(MONTO)
+
 
     print("✅ Datos de apadrinamiento llenados")
     screenshot(driver, "06_llena_apadrinamiento")
 
 except:
     print("⚠️ No fue posible llenar los datos")
+
+# Click en Confirmar Apadrinamiento
+
+boton = WebDriverWait(driver, 5).until(
+        EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Confirmar Apadrinamiento')]"))
+    )
+boton.click()
+
+print("✅ Click en Apadrinar")
+screenshot(driver, "07_click_apadrinar")
